@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="../css/roboto.css" rel="stylesheet" />
+
+  <!-- MDB -->
+  <link href="../css/mdb.min.css" rel="stylesheet" />
+
+  <title>Report</title>
+
+  <style>
+    .navbar-brand-custom {
+      padding-top: var(--mdb-navbar-brand-padding-y);
+      padding-bottom: var(--mdb-navbar-brand-padding-y);
+      font-size: var(--mdb-navbar-brand-font-size);
+      color: var(--mdb-navbar-brand-color);
+      white-space: nowrap;
+    }
+
+    .report-header-fs {
+      font-size: 2em !important;
+    }
+
+    .title-custom {
+      font-size: 1.2rem !important;
+    }
+
+    .p-custom {
+      font-size: 0.9em !important;
+    }
+
+    .navbar-icon:active {
+      opacity: 0.5;
+    }
+
+    .bg-warning-custom {
+      background-color: #FFD580;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main d-flex flex-column vh-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <div class="navbar-brand-custom ms-2"> <i class="fas fa-arrow-left pe-3 navbar-icon"></i>Screening Report</div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div style="flex: 1; overflow-y: scroll;">
+      <div class="report-header mt-4 text-center mb-5">
+        <h1 class="report-header-fs mb-1">AAPL is <br> an Ethical Stock</h1>
+        <p class="text-muted">Based on ESG standards <i class="far fa-question-circle"></i></p>
+      </div>
+
+      <div class="revenue-screen mb-4">
+        <div class="container px-3">
+          <div class="row align-items-end">
+            <div class="col">
+              <h5 class="mb-0 title-custom">Revenue Screen</h5>
+            </div>
+            <div class="col-auto">
+              <p class="badge badge-success mb-0">PASS</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="hr my-2">
+
+        <div class="container px-3">
+          <p class="mb-2"><i class="fas fa-check-circle text-success pe-1"></i> ESG Score</p>
+
+          <div class="progress mb-2" style="height: 20px;">
+            <div class="progress-bar bg-success" role="progressbar" style="width: 80%;">80%</div>
+          </div>
+
+          <p class="text-muted lh-sm p-custom pt-1 pb-2">
+            ESG score must be greater than 80%
+          </p>
+        </div>
+      </div>
+
+      <div class="financial-screen mb-5">
+        <div class="container px-3">
+          <div class="row align-items-end">
+            <div class="col">
+              <h5 class="mb-0 title-custom">Financial Screen</h5>
+            </div>
+            <div class="col-auto">
+              <p class="badge badge-success mb-0">PASS</p>
+            </div>
+          </div>
+        </div>
+
+        <hr class="hr my-2">
+
+        <div class="section-1 mb-3">
+          <div class="container px-3">
+            <p class="mb-2"><i class="fas fa-check-circle text-success pe-1"></i> Interest-bearing debt</p>
+
+            <div class="progress mb-2" style="height: 20px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 11%;">11%</div>
+            </div>
+
+            <p class="text-muted lh-sm p-custom pt-1 mb-1">
+              Debt that generates interest should not exceed 30% of its market cap.
+            </p>
+
+            <a class="p-custom" data-mdb-toggle="collapse" href="#section-1" role="button" aria-expanded="false">
+              Show Details
+            </a>
+
+            <div class="collapse" id="section-1">
+              <div class="card shadow-0 bg-warning-custom mt-2">
+                <div class="card-body text-center py-3">
+                  Total Debt / Market Cap
+                  <hr class="my-2">
+                  $17.57B / $569.01B
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-2">
+          <div class="container px-3">
+            <p class="mb-2"><i class="fas fa-check-circle text-success pe-1"></i> Interest-bearing securities</p>
+
+            <div class="progress mb-2" style="height: 20px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 14%;">14%</div>
+            </div>
+
+            <p class="text-muted lh-sm p-custom pt-1 mb-1">
+              The total amount of investments, deposits and debt a company extends with interest should not exceed
+              30% of it's market cap.
+            </p>
+
+            <a class="p-custom" data-mdb-toggle="collapse" href="#section-2" role="button" aria-expanded="false">
+              Show Details
+            </a>
+
+            <div class="collapse" id="section-2">
+              <div class="card shadow-0 bg-warning-custom mt-2">
+                <div class="card-body text-center py-3">
+                  Interest Bearing Securities / Market Cap
+                  <hr class="my-2">
+                  $51.28B / $569.01B
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 0.8em;">
+          Copyright © 2022 Stock Screener Inc. All rights reserved. <br>
+          Real time data and company financials provided by Yahoo Finance, Finnhub and SEC EDGAR.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
+
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</body>
+
+</html>

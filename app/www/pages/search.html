@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="../css/roboto.css" rel="stylesheet" />
+
+  <!-- MDB -->
+  <link href="../css/mdb.min.css" rel="stylesheet" />
+
+  <!-- Bottom navbar CSS -->
+  <link href="../css/bottom-navbar.css" rel="stylesheet" />
+
+  <title>Search</title>
+
+  <style>
+    .item:active {
+      opacity: 0.5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main d-flex flex-column vh-100">
+    <!-- Search -->
+    <div class="search px-2 py-3">
+      <div class="input-group my-1">
+        <div class="form-outline">
+          <input type="search" id="search" class="form-control" placeholder="Search stock symbol" autofocus />
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="results" style="flex: 1; overflow-y: scroll;">
+      <div class="item mb-3">
+        <hr class="hr mt-0">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <h3 class="mb-0">AAPL</h3>
+            </div>
+            <div class="col-auto">
+              <p class="text-muted mb-0">NASDAQ</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p class="text-muted mb-0">Apple Inc</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bottom-nav-shadow">
+      <ul class="nav nav-tabs nav-justified bg-primary">
+        <li class="nav-item">
+          <a class="nav-link" href="./home.html">
+            <i class="fas fa-home fa-lg"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active-link">
+            <i class="fas fa-search fa-lg"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-bookmark fa-lg"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link">
+            <i class="fas fa-cog fa-lg"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
+
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- MiniSearch -->
+  <script src="https://cdn.jsdelivr.net/npm/minisearch@6.0.0/dist/umd/index.min.js"></script>
+
+  <script>
+    const miniSearch = new MiniSearch({
+      fields: ['symbol', 'name',], // fields to index for full-text search
+      storeFields: ['symbol', 'name', 'exchange'] // fields to return with search results
+    });
+
+    const init = async () => {
+      const URI = 'http://localhost:3000/stocks';
+      const resp = await fetch(URI);
+      const { stocks } = await resp.json();
+      miniSearch.addAll(stocks)
+    }
+
+    init();
+
+    var timeout = null;
+
+    $('#search').keyup(function () {
+      clearTimeout(timeout);
+
+      timeout = setTimeout(function () {
+        const query = $('#search').val();
+        let results = miniSearch.search(query);
+
+        $('.results').empty();
+
+        for (entry of results) {
+          const { symbol, name, exchange } = entry;
+
+          $('.results').append(`
+          <div class="item mb-3">
+            <hr class="hr mt-0">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <h3 class="mb-0">${symbol}</h3>
+                </div>
+                <div class="col-auto">
+                  <p class="text-muted mb-0">${exchange}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p class="text-muted mb-0">${name}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          `)
+        }
+      }, 500);
+    });
+  </script>
+</body>
+
+</html>

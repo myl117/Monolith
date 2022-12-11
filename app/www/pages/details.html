@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link href="../css/roboto.css" rel="stylesheet" />
+
+  <!-- MDB -->
+  <link href="../css/mdb.min.css" rel="stylesheet" />
+
+  <title>Details</title>
+
+  <style>
+    .navbar-brand-custom {
+      padding-top: var(--mdb-navbar-brand-padding-y);
+      padding-bottom: var(--mdb-navbar-brand-padding-y);
+      font-size: var(--mdb-navbar-brand-font-size);
+      color: var(--mdb-navbar-brand-color);
+      white-space: nowrap;
+    }
+
+    .navbar-icon:active {
+      opacity: 0.5;
+    }
+
+    .stats-h1 {
+      font-size: 3em !important;
+    }
+
+    .check-icon {
+      font-size: 1.1em;
+    }
+
+    .report-btn {
+      padding-top: 0.8rem !important;
+      padding-bottom: 0.8rem !important;
+    }
+
+    .title-custom {
+      font-size: 1.1rem !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main d-flex flex-column vh-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <div class="nav-wrapper d-flex flex-row vw-100">
+          <div class="navbar-brand-custom navbar-icon ms-2">
+            <i class="fas fa-arrow-left"></i>
+          </div>
+          <div class="navbar-brand-custom text-center" style="flex: 1">
+            Apple Inc
+          </div>
+          <div class="navbar-brand-custom navbar-icon me-2">
+            <i class="far fa-heart"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div style="flex: 1; overflow-y: scroll;">
+      <div class="stats mt-3">
+        <h1 class="stats-h1 text-center mb-0">$147.81</h1>
+        <p class="text-center"><span class="text-danger">-0.5 (0.34%)</span><span class="text-muted"> TODAY</span></p>
+      </div>
+
+      <div class="chart mb-5">
+        <canvas id="myChart" class="mb-3" style="width:100%; height:13em;"></canvas>
+
+        <nav class="container">
+          <ul class="pagination d-flex justify-content-between">
+            <li class="page-item">
+              <a class="page-link" href="#">1D</a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1M</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">3M</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">6M</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">1Y</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">2Y</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- REPORT -->
+      <div class="report mb-4">
+        <div class="container px-3">
+          <h5 class="mb-0 title-custom">Compliance Status</h5>
+        </div>
+
+        <hr class="hr my-2">
+
+        <div class="container px-3">
+          <p class="mb-2"><i class="fas fa-check-circle text-success pe-1 check-icon"></i> AAPL is an Ethical Stock</p>
+
+          <a type="button" class="btn btn-outline-secondary w-100 report-btn" style="font-size: 0.9em;"
+            data-mdb-ripple-color="dark">
+            See Screening Report
+          </a>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="key-stats mb-4 pt-1">
+        <div class="container px-3">
+          <h5 class="mb-0 title-custom">Key Stats</h5>
+        </div>
+
+        <hr class="hr my-2">
+
+        <div class="container px-3">
+          <div class="row">
+            <div class="col">
+              <ul class="list-group list-group-light list-group-small">
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                  Market Cap
+                  <span class="badge badge-primary rounded-pill">$2.27T</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                  52-Week Low
+                  <span class="badge badge-primary rounded-pill">$128.65</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                  P/E Ratio
+                  <span class="badge badge-primary rounded-pill">22.74</span>
+                </li>
+              </ul>
+            </div>
+            <div class="col">
+              <ul class="list-group list-group-light list-group-small">
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                  Dividend
+                  <span class="badge badge-primary rounded-pill">$0.91</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                  52-Week High
+                  <span class="badge badge-primary rounded-pill">$181.88</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center border-0">
+                  EPS
+                  <span class="badge badge-primary rounded-pill">$6.11</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <div class="about mb-5">
+        <div class="container px-3">
+          <h5 class="mb-0 title-custom">About</h5>
+        </div>
+
+        <hr class="hr mt-2">
+
+        <div class="container px-3">
+          <p>
+            Apple Inc. is an American multinational technology company headquartered in Cupertino, California, United
+            States.
+          </p>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <footer class="bg-light text-center text-lg-start">
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2); font-size: 0.8em;">
+          Copyright © 2022 Stock Screener Inc. All rights reserved. <br> View <a href="#">Stock Screener's Terms of
+            Use</a>.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
+
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- Chart JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+  <script>
+    var xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+    var yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
+
+    new Chart("myChart", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{
+          fill: false,
+          lineTension: 0.1,
+          borderColor: "#14a44d",
+          data: yValues
+        }]
+      },
+      options: {
+        layout: {
+          padding: {
+            left: -10,
+            right: 0,
+            top: 2,
+            bottom: 0
+          }
+        },
+        responsive: true,
+        legend: { display: false },
+        elements: {
+          point: {
+            radius: 1
+          }
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              display: false
+            }
+          }],
+          yAxes: [{
+            gridLines: {
+              display: false
+            },
+            ticks: {
+              display: false
+            }
+          }]
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script>
+    // check if user is already logged in
+    // we do this at the top of the page so it redirects before rendering the page
+    const access_token = localStorage.getItem('access_token');
+
+    if (access_token) {
+      window.location.href = './pages/home.html'
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="./css/roboto.css" rel="stylesheet" />
+
+  <!-- MDB -->
+  <link href="./css/mdb.min.css" rel="stylesheet" />
+
+  <title>Index</title>
+</head>
+
+<body>
+  <div class="main d-flex flex-column vh-100">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-primary">
+      <div class="container-fluid">
+        <a class="navbar-brand">Stock Screener</a>
+      </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="d-flex align-items-center" style="flex: 1; overflow-y: scroll;">
+      <div class="flex-wrapper container pb-5">
+        <form id="login" class="w-100">
+          <div class="form-outline mb-2">
+            <input type="text" id="formControlDefault" class="form-control email" />
+            <label class="form-label" for="formControlDefault">Email</label>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Get Started</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MDB -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
+
+  <!-- JQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <!-- Magic -->
+  <script src="https://cdn.jsdelivr.net/npm/magic-sdk/dist/magic.js"></script>
+
+  <script>
+    const magic = new Magic('pk_live_EDF5013AF4526241');
+
+    $(document).ready(function () {
+      $('#login').on('submit', async function (e) {
+        $('*', '#login').prop('disabled', true); // disable form
+
+        e.preventDefault();
+        let email = $('.email').val();
+
+        if (email.includes('@')) {
+          const DID = await magic.auth.loginWithMagicLink({ email });
+
+          const resp = await fetch('http://localhost:3000/login?token=' + DID);
+          const { access_token } = await resp.json();
+
+          console.log(access_token);
+
+          // save token to local storage
+          localStorage.setItem('access_token', access_token);
+
+          window.location.href = './pages/home.html'
+
+          //alert(access_token);
+        }
+
+        $('*', '#login').prop('disabled', false); // enable form
+      });
+    });
+  </script>
+</body>
+
+</html>
