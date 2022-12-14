@@ -1,6 +1,6 @@
 const miniSearch = new MiniSearch({
   fields: ['symbol', 'name',], // fields to index for full-text search
-  storeFields: ['symbol', 'name', 'exchange'] // fields to return with search results
+  storeFields: ['symbol', 'name', 'exchange', 'ethical', 'esg_score'] // fields to return with search results
 });
 
 const init = async () => {
@@ -24,10 +24,11 @@ $('#search').keyup(function () {
     $('.results').empty();
 
     for (entry of results) {
-      const { symbol, name, exchange } = entry;
+      const { symbol, name, exchange, ethical, esg_score } = entry;
+      let link = `/details.html?symbol=${symbol}&name=${encodeURIComponent(name)}&exchange=${exchange}&ethical=${ethical}&esg_score=${esg_score}`;
 
       $('.results').append(`
-      <div class="item mb-3">
+      <div class="item mb-3" data-link="${link}">
         <hr class="hr mt-0">
         <div class="container">
           <div class="row">
@@ -48,4 +49,10 @@ $('#search').keyup(function () {
       `)
     }
   }, 500);
+});
+
+// item click handler
+$(document).on('click', '.item', function () {
+  const link = $(this).data('link');
+  window.location = '.' + link;
 });
